@@ -1,0 +1,18 @@
+udp:
+特点：无连接       犹如写信，寄信
+
+DatagramSocket    邮筒
+DatagramPacket    空信
+
+
+
+客户端：
+1.创建内容   String str = "";
+2.创建邮筒   DatagramPacket
+3.创建信（内容，下标，长度，地址，端口） DatagramSocket
+4.发送  .send()
+
+服务器端：
+1.从对应端口获取信件      DatagramSocket
+2.构建一封空信                 byte[]   DatagramPacket
+3.收取，阻塞（获取对应下表，长度，端口，名字）   .receive()

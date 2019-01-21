@@ -1,0 +1,12 @@
+tcp：总共有三次握手
+特点：有连接    像握手
+
+
+
+
+1.客户端创建网络对象连接socket 
+2.服务器端创建网络对象连接ServerSocket 
+3.客户端获取网络对象io流，给服务器发数据 （OutputStream）
+4.服务器端等待接入，服务器接收数据，网络连接对象中获得输入流（InputStream）
+5.客户端接受服务器应答（InputStream）
+6.服务器端回复应答（OutputStream）

@@ -1,0 +1,45 @@
+create table users
+(
+  username  varchar2(20)    constraint users_username_pk primary key,
+  password  varchar2(20)    constraint users_password_nn not null,
+  name    varchar2(20)    constraint users_name_nn not null,
+email   varchar2(20)    constraint users_email_uk unique constraint
+                  users_email_nn not null,
+  address   varchar2(20)    constraint users_address_nn not null,
+  sex       char(1)       constraint users_sex_ck check (sex in ('M','F')),
+  married   number(1)   constraint users_married_ck check(married in (0,1)),
+  zip       number(6)   default 100000 constraint users_zip_nn not null,
+  income    number(9, 2)    constraint users_income_ck check(income>0.0)
+);
+
+=======================================
+create table orders
+(
+	orderId number(6) constraint orders_orderid_pk primary key,
+	orderdate date constraint orders_orderdate_nn not null,
+	state varchar2(20) default sysdate constraint orders_state_nn not null constraint 
+orders_state_ck check (state in ('Y','N')),
+	totalPrice number(10,2) constraint orders_totalprice_nn not null constraint
+orders_totalprice_ck check (totalPrice > 0.0),
+	username varchar2(20) constraint orders_username_nn not null constraint 
+		orders_yihang_username_fk references users (username) 
+);
+
+
+===========================================
+	create table students
+(
+   studentId number(4),
+   studentName varchar2(10) not null,
+   primary key (studentId)
+);
+
+
+=======================================
+create table scores
+(
+   studentId number(4) not null,
+   courseName varchar2(10) not null,
+   score number(3) not null,
+   primary key(studentId, courseName)
+);
